@@ -122,7 +122,7 @@ contract Flashloan is FlashLoanReceiverBase {
     }
 
     function rescueBNB(uint256 amount) external{
-        payable(owner).transfer(amount);
+         address(uint160(owner)).transfer(amount);
     }
 
     // This is the first function to call to execute arbitrage
@@ -143,7 +143,7 @@ contract Flashloan is FlashLoanReceiverBase {
     }
     
     // This is the last function to call to execute arbitrage
-    function executeArbi(){
+    function executeArbi() public{
         if(_tokenPay==WBNB)
         {
             token0 = BNB_ADDRESS; 

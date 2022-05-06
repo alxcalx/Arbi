@@ -1,5 +1,9 @@
-pragma solidity >=0.6.2 <0.8.0;
+pragma solidity ^0.5.0;
 
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP. Does not include
+ * the optional functions; to access them see {ERC20Detailed}.
+ */
 interface IERC20 {
     /**
      * @dev Returns the amount of tokens in existence.
@@ -69,5 +73,4 @@ interface IERC20 {
      * a call to {approve}. `value` is the new allowance.
      */
     event Approval(address indexed owner, address indexed spender, uint256 value);
-
 }
