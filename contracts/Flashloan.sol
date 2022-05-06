@@ -148,7 +148,7 @@ contract Flashloan is FlashLoanReceiverBase {
 		address _sourceFactory1,
 		address _targetFactory1,
 		address _sourceRouter1,
-		address _targetRouter1 ) public{
+		address _targetRouter1 ) external{
         
         // setting parameters
         _tokenPay = _tokenPay1;
