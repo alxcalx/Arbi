@@ -4,7 +4,6 @@ import "./base/FlashLoanReceiverBase.sol";
 import "./interfaces/ILendingPoolAddressesProvider.sol";
 import "./interfaces/ILendingPool.sol";
 
-
 import './UniswapV2Library.sol';
 import './utils/IERC20.sol';
 import './interfaces/IUniswapV2Pair.sol';
