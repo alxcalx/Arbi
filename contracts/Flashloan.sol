@@ -87,7 +87,7 @@ contract Flashloan is FlashLoanReceiverBase {
         );
 
         require(
-            tokenBought > 0,
+            tokenBought[0] > 0,
             "tokenBought must be gt 0"
         );
 
@@ -120,7 +120,7 @@ contract Flashloan is FlashLoanReceiverBase {
 
         
         require(
-            token1Bought > 0,
+            token1Bought[0] > 0,
             "token1Bought must be gt 0"
         );
         */
