@@ -67,7 +67,6 @@ contract Flashloan is FlashLoanReceiverBase {
             "Could not approve token0 sell"
         );
 
-        /*
         address[] memory path;
         if (token0 == WBNB || token1 == WBNB) {
             path = new address[](2);
@@ -79,7 +78,8 @@ contract Flashloan is FlashLoanReceiverBase {
             path[1] = WBNB;
             path[2] = token1;
         }
-
+        
+        /*
         uint[] memory tokenBought;
          
         tokenBought = IUniswapV2Router02(routerA).swapExactTokensForTokens(
