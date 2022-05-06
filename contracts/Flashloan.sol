@@ -59,7 +59,7 @@ contract Flashloan is FlashLoanReceiverBase {
         );
 
         /////////////////////////////////// swap logic here
-        /*
+        
         uint256 deadline = getDeadline();
         IERC20 TokenA = IERC20(token0);
         IERC20 TokenB = IERC20(token1);
@@ -113,7 +113,7 @@ contract Flashloan is FlashLoanReceiverBase {
             address(this), // or address(this), and transfer the swapped token to msg.sender
             block.timestamp + 3
         );
-        */
+        
         /////////////////////////////////// swap ends here
 
         uint256 totalDebt = _amount.add(_fee);
