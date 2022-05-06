@@ -18,8 +18,6 @@ contract Flashloan is FlashLoanReceiverBase {
     address payable public owner;
 
     // properties for swapping
-    address private constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
-    //  address private constant pancakeRouter = 0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F;
     IUniswapV2Pair public exchangeA;
     IUniswapV2Pair public exchangeB;
     address routerA;
@@ -28,7 +26,7 @@ contract Flashloan is FlashLoanReceiverBase {
     address token1;
     address pairAddress0;
     address pairAddress1;
-
+    address private constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;  
 
     address public _tokenPay;
     address public _tokenSwap;
@@ -89,6 +87,11 @@ contract Flashloan is FlashLoanReceiverBase {
         );
 
         require(
+            tokenBought > 0,
+            "tokenBought must be gt 0"
+        );
+
+        require(
             TokenB.approve(address(exchangeB), tokenBought[0]),
             "Could not approve token1 sell"
         );
@@ -113,6 +116,12 @@ contract Flashloan is FlashLoanReceiverBase {
             address(this), // or address(this), and transfer the swapped token to msg.sender
             block.timestamp + 3
         );
+
+        
+        require(
+            token1Bought > 0,
+            "tokenBought must be gt 0"
+        );
         
         /////////////////////////////////// swap ends here
 
@@ -129,22 +138,22 @@ contract Flashloan is FlashLoanReceiverBase {
 	}
     
     // This is the last function to call to execute arbitrage
-    function executeArbi( address _tokenPay, // source currency when we will get; example BNB
-		address _tokenSwap, // swapped currency with the source currency; example BUSD
-		uint256 _amountTokenPay, // example: BNB => 10 * 1e18
-		address _sourceFactory,
-		address _targetFactory,
-		address _sourceRouter,
-		address _targetRouter ) public{
+    function executeArbi( address _tokenPay1, // source currency when we will get; example BNB
+		address _tokenSwap1, // swapped currency with the source currency; example BUSD
+		uint256 _amountTokenPay1, // example: BNB => 10 * 1e18
+		address _sourceFactory1,
+		address _targetFactory1,
+		address _sourceRouter1,
+		address _targetRouter1 ) public{
         
         // setting parameters
-        _tokenPay = _tokenPay;
-        _tokenSwap = _tokenSwap;
-        _amountTokenPay = _amountTokenPay;
-        _sourceFactory = _sourceFactory;
-        _targetFactory = _targetFactory;
-        _sourceRouter = _sourceRouter;
-        _targetRouter = _targetRouter;
+        _tokenPay = _tokenPay1;
+        _tokenSwap = _tokenSwap1;
+        _amountTokenPay = _amountTokenPay1;
+        _sourceFactory = _sourceFactory1;
+        _targetFactory = _targetFactory1;
+        _sourceRouter = _sourceRouter1;
+        _targetRouter = _targetRouter1;
         // end setting parameters
 
         if(_tokenPay==WBNB)
@@ -162,7 +171,7 @@ contract Flashloan is FlashLoanReceiverBase {
 
         require(
             _tokenPay !=_tokenSwap,
-            "Same pairs "
+            "Same pairs"
         ); 
 
         pairAddress0 = IUniswapV2Factory(_sourceFactory).getPair(_tokenPay, _tokenSwap);
