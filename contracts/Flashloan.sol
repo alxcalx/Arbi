@@ -61,10 +61,12 @@ contract Flashloan is FlashLoanReceiverBase {
         uint256 deadline = getDeadline();
         IERC20 TokenA = IERC20(token0);
         IERC20 TokenB = IERC20(token1);
-        require(
+
+        /*require(
             TokenA.approve(address(exchangeA), _amount),
             "Could not approve token0 sell"
-        );
+        );*/
+
         address[] memory path;
         if (token0 == WBNB || token1 == WBNB) {
             path = new address[](2);
