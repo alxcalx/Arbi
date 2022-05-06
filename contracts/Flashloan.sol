@@ -120,7 +120,7 @@ contract Flashloan is FlashLoanReceiverBase {
         
         require(
             token1Bought > 0,
-            "tokenBought must be gt 0"
+            "token1Bought must be gt 0"
         );
         
         /////////////////////////////////// swap ends here
