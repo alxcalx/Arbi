@@ -30,13 +30,13 @@ contract Flashloan is FlashLoanReceiverBase {
     address pairAddress1;
 
 
-    address _tokenPay;
-    address _tokenSwap;
-    uint256 _amountTokenPay;
-    address _sourceFactory;
-    address _targetFactory;
-    address _sourceRouter;
-    address _targetRouter;
+    address public _tokenPay;
+    address public _tokenSwap;
+    uint256 public _amountTokenPay;
+    address public _sourceFactory;
+    address public _targetFactory;
+    address public _sourceRouter;
+    address public _targetRouter;
 
     // end properties for swapping
 
