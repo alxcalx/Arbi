@@ -78,6 +78,7 @@ contract Flashloan is FlashLoanReceiverBase {
         }
 
         uint[] memory tokenBought;
+        /*
         tokenBought = IUniswapV2Router02(routerA).swapExactTokensForTokens(
             _amount,
             0,
@@ -109,7 +110,7 @@ contract Flashloan is FlashLoanReceiverBase {
             path[2] = token0;
         }
         uint[] memory token1Bought;
-        /*
+        
         token1Bought= IUniswapV2Router02(routerB).swapExactTokensForTokens(
             tokenBought[0],
             0,
