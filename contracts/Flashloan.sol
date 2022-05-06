@@ -124,6 +124,9 @@ contract Flashloan is FlashLoanReceiverBase {
         owner.transfer(amount);
     }
 
+	function getDeadline() internal view returns (uint256) {
+			return now + 3000;
+	} 
     
     // This is the last function to call to execute arbitrage
     function executeArbi( address _tokenPay, // source currency when we will get; example BNB
