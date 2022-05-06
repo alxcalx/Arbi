@@ -25,9 +25,9 @@ contract Flashloan is FlashLoanReceiverBase {
     // end properties for swapping
 
     
-	constructor() public {
-			owner = msg.sender;
-	}
+    constructor() public {
+            owner = msg.sender;
+    }
 
     function flashloanBnb(uint256 _amount) external  {
         bytes memory data = "";
