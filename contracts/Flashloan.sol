@@ -4,6 +4,13 @@ import "./base/FlashLoanReceiverBase.sol";
 import "./interfaces/ILendingPoolAddressesProvider.sol";
 import "./interfaces/ILendingPool.sol";
 
+
+import './UniswapV2Library.sol';
+import './utils/IERC20.sol';
+import './interfaces/IUniswapV2Pair.sol';
+import './interfaces/IUniswapV2Factory.sol';
+import './interfaces/IUniswapV2Router02.sol';
+
 contract Flashloan is FlashLoanReceiverBase {
 
     address public receiver = address(this);
