@@ -92,8 +92,8 @@ contract Flashloan is FlashLoanReceiverBase {
         require(
             tokenBought[0] > 0,
             "tokenBought must be gt 0"
-        );
-        /*
+        );  
+
         require(
             TokenB.approve(address(exchangeB), tokenBought[0]),
             "Could not approve token1 sell"
@@ -126,7 +126,7 @@ contract Flashloan is FlashLoanReceiverBase {
             token1Bought[0] > 0,
             "token1Bought must be gt 0"
         );
-        */
+         
         /////////////////////////////////// swap ends here
 
         uint256 totalDebt = _amount.add(_fee);
