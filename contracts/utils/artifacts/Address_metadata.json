@@ -1,20 +1,16 @@
 {
 	"compiler": {
-		"version": "0.6.12+commit.27d51765"
+		"version": "0.5.17+commit.d19bba13"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [],
 		"devdoc": {
 			"details": "Collection of functions related to the address type",
-			"kind": "dev",
-			"methods": {},
-			"version": 1
+			"methods": {}
 		},
 		"userdoc": {
-			"kind": "user",
-			"methods": {},
-			"version": 1
+			"methods": {}
 		}
 	},
 	"settings": {
@@ -23,9 +19,6 @@
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
-		"metadata": {
-			"bytecodeHash": "ipfs"
-		},
 		"optimizer": {
 			"enabled": true,
 			"runs": 200
@@ -34,11 +27,10 @@
 	},
 	"sources": {
 		"contracts/utils/Address.sol": {
-			"keccak256": "0x87e4c878363f9ba00ebf04489723583624357f332647a37ea88561dee0b5a1ba",
-			"license": "agpl-3.0",
+			"keccak256": "0x45e2bb09a9dfae8a41fcf7dbb7d8a923b6fe9fbce064eb9b04e7c68e332c1d2a",
 			"urls": [
-				"bzz-raw://182d939150c19f6aca89a0ad24f467b81f9233cd11f2530975d782ef9e058624",
-				"dweb:/ipfs/QmSwRyZuiuix2kPtyEA8eFevu7M8gQMhXL3i6EdYr5XnDF"
+				"bzz-raw://1498a902f6ddf8d094be47978c6b4ac50443c9c812e06b46964fecac4551d216",
+				"dweb:/ipfs/Qme1w9d2P7gsV87WQewP8y6P9Rg8vQsyCdm9nqYsuhHq9Y"
 			]
 		}
 	},

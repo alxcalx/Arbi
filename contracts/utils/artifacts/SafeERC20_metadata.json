@@ -1,21 +1,17 @@
 {
 	"compiler": {
-		"version": "0.6.12+commit.27d51765"
+		"version": "0.5.17+commit.d19bba13"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [],
 		"devdoc": {
-			"details": "Wrappers around ERC20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
-			"kind": "dev",
+			"details": "Wrappers around ERC20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for ERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
 			"methods": {},
-			"title": "SafeERC20",
-			"version": 1
+			"title": "SafeERC20"
 		},
 		"userdoc": {
-			"kind": "user",
-			"methods": {},
-			"version": 1
+			"methods": {}
 		}
 	},
 	"settings": {
@@ -24,9 +20,6 @@
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
-		"metadata": {
-			"bytecodeHash": "ipfs"
-		},
 		"optimizer": {
 			"enabled": true,
 			"runs": 200
@@ -35,33 +28,31 @@
 	},
 	"sources": {
 		"contracts/utils/Address.sol": {
-			"keccak256": "0x87e4c878363f9ba00ebf04489723583624357f332647a37ea88561dee0b5a1ba",
-			"license": "agpl-3.0",
+			"keccak256": "0x45e2bb09a9dfae8a41fcf7dbb7d8a923b6fe9fbce064eb9b04e7c68e332c1d2a",
 			"urls": [
-				"bzz-raw://182d939150c19f6aca89a0ad24f467b81f9233cd11f2530975d782ef9e058624",
-				"dweb:/ipfs/QmSwRyZuiuix2kPtyEA8eFevu7M8gQMhXL3i6EdYr5XnDF"
+				"bzz-raw://1498a902f6ddf8d094be47978c6b4ac50443c9c812e06b46964fecac4551d216",
+				"dweb:/ipfs/Qme1w9d2P7gsV87WQewP8y6P9Rg8vQsyCdm9nqYsuhHq9Y"
 			]
 		},
 		"contracts/utils/IERC20.sol": {
-			"keccak256": "0xb65f209e84769b173795659f7ae6c178da4dc5d761f529b38da508abbe763805",
+			"keccak256": "0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9",
 			"urls": [
-				"bzz-raw://96d4d2a566f02e91d3fdee2e93bc12b34ec6a84bb36d85fe13dd25a0bd1c4d6d",
-				"dweb:/ipfs/QmTRYKuSrmYmP9Yz8hWZzmG5nnJsH332ir2nUTKjLfTanN"
+				"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91",
+				"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc"
 			]
 		},
 		"contracts/utils/SafeERC20.sol": {
-			"keccak256": "0x480b908da66135afeedf3e5f2d851dc19ac23c9c8f07a870cd0cc39ebbeb1510",
+			"keccak256": "0xecbc4a69bc5d883b461abd64490c89b096532a4c37fc06d65e6a6459b5f3cdb3",
 			"urls": [
-				"bzz-raw://d952d04ade2c77edf70ba972e41f102d12505c78acfc89eff06f8105987228bb",
-				"dweb:/ipfs/Qmd4dQsFaBQKqFhuzNjJs6PfLn9yNut994PAGxn2WGfbw5"
+				"bzz-raw://ca531a3a270e270c2dec7cf35773accfecc0b53de1783c39056e66d0fa35801e",
+				"dweb:/ipfs/QmUvCXsFxBEhyJBgF2YYwu3MaZQ2AzfkGgrpWY5gU9X7UG"
 			]
 		},
 		"contracts/utils/SafeMath.sol": {
-			"keccak256": "0xe6fa755f2402d85e8ee5b6fda212496b156785ecce893d6c59151d71df194d8a",
-			"license": "MIT",
+			"keccak256": "0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076",
 			"urls": [
-				"bzz-raw://224921686f924563f31e4993b42d619680694b37c4ac95bb9b58ca6eb9f98c36",
-				"dweb:/ipfs/QmXSkbQ4G1RopfdP35Zk5wN6VUmtA3c5ACzMf1bM5gALym"
+				"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f",
+				"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq"
 			]
 		}
 	},

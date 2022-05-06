@@ -121,17 +121,18 @@ contract Flashloan is FlashLoanReceiverBase {
     }
 
     function rescueBNB(uint256 amount) external{
-        payable(owner).transfer(amount);
+         address(uint160(owner)).transfer(amount);
     }
 
     // This is the first function to call to execute arbitrage
     function setParams(
         address _tokenPay, // source currency when we will get; example BNB
-        address _tokenSwap, // swapped currency with the source currency; example BUSD
-        uint256 _amountTokenPay, // example: BNB => 10 * 1e18
-        address _targetFactory,
-        address _sourceRouter,
-        address _targetRouter) external {
+		address _tokenSwap, // swapped currency with the source currency; example BUSD
+		uint256 _amountTokenPay, // example: BNB => 10 * 1e18
+		address _sourceFactory,
+		address _targetFactory,
+		address _sourceRouter,
+		address _targetRouter ) external {
             _tokenPay = _tokenPay;
             _tokenSwap = _tokenSwap;
             _amountTokenPay = _amountTokenPay;
@@ -142,7 +143,7 @@ contract Flashloan is FlashLoanReceiverBase {
     }
     
     // This is the last function to call to execute arbitrage
-    function executeArbi(){
+    function executeArbi() public{
         if(_tokenPay==WBNB)
         {
             token0 = BNB_ADDRESS; 
