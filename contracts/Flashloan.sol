@@ -121,7 +121,7 @@ contract Flashloan is FlashLoanReceiverBase {
     }
 
     function rescueBNB(uint256 amount) external{
-         address(uint160(owner)).transfer(amount);
+         address(owner).transfer(amount);
     }
 
     
