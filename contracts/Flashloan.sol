@@ -15,7 +15,7 @@ contract Flashloan is FlashLoanReceiverBase {
     address public receiver = address(this);
     address public constant BNB_ADDRESS = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
-    address payable public  owner;
+    address payable public owner;
 
     // properties for swapping
     address private constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
@@ -121,7 +121,7 @@ contract Flashloan is FlashLoanReceiverBase {
     }
 
     function rescueBNB(uint256 amount) external{
-         address(owner).transfer(amount);
+        owner.transfer(amount);
     }
 
     
