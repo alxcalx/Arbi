@@ -109,6 +109,7 @@ contract Flashloan is FlashLoanReceiverBase {
             path[2] = token0;
         }
         uint[] memory token1Bought;
+        /*
         token1Bought= IUniswapV2Router02(routerB).swapExactTokensForTokens(
             tokenBought[0],
             0,
@@ -122,7 +123,7 @@ contract Flashloan is FlashLoanReceiverBase {
             token1Bought > 0,
             "token1Bought must be gt 0"
         );
-        
+        */
         /////////////////////////////////// swap ends here
 
         uint256 totalDebt = _amount.add(_fee);
