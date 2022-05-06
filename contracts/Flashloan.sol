@@ -62,10 +62,10 @@ contract Flashloan is FlashLoanReceiverBase {
         IERC20 TokenA = IERC20(token0);
         IERC20 TokenB = IERC20(token1);
 
-        /*require(
+        require(
             TokenA.approve(address(exchangeA), _amount),
             "Could not approve token0 sell"
-        );*/
+        );
 
         address[] memory path;
         if (token0 == WBNB || token1 == WBNB) {
@@ -80,7 +80,7 @@ contract Flashloan is FlashLoanReceiverBase {
         }
 
         uint[] memory tokenBought;
-        /*
+         
         tokenBought = IUniswapV2Router02(routerA).swapExactTokensForTokens(
             _amount,
             0,
@@ -93,7 +93,7 @@ contract Flashloan is FlashLoanReceiverBase {
             tokenBought[0] > 0,
             "tokenBought must be gt 0"
         );
-
+        /*
         require(
             TokenB.approve(address(exchangeB), tokenBought[0]),
             "Could not approve token1 sell"
