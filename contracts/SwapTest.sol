@@ -48,7 +48,7 @@ contract Swapcontract {
             msg.sender, // or address(this), and transfer the swapped token to msg.sender
             block.timestamp + 60
         );  
-
+/*
          IERC20(token1).approve(pancakeRouter, tokenBought[0]); 
 
 
@@ -74,7 +74,7 @@ contract Swapcontract {
         );  
 
 
-
+*/
 
     }
 
