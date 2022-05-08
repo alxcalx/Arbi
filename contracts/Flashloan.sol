@@ -229,7 +229,7 @@ contract Flashloan is FlashLoanReceiverBase {
 
 
     function UnwrapBNB(uint _amount) public payable{
-        wbnb.withdraw(_amount); //unwrap BNB to WBNB
+        wbnb.withdraw(_amount); //unwrap WBNB to BNB
     }
 
 
