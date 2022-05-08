@@ -192,7 +192,10 @@ contract Flashloan is FlashLoanReceiverBase {
 
         if(_tokenPay==WBNB_)
         {
-           reserve = BNB_ADDRESS; 
+           reserve = BNB_ADDRESS; // token that is being lended (BNB)
+        }else{
+
+          reserve = _tokenPay;  // token that is being lended (USDT, USDC, ETH, BUSD)
         } 
 
         token1= _tokenSwap;
