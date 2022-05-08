@@ -18,6 +18,7 @@ contract Flashloan is FlashLoanReceiverBase {
     address public constant BNB_ADDRESS = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
     address payable public owner;
+    address public reserve;
 
     // properties for swapping
    // IUniswapV2Pair public exchangeA;
@@ -61,7 +62,11 @@ contract Flashloan is FlashLoanReceiverBase {
             "Invalid balance, was the flashLoan successful?"
         );
       
-        WrapBNB();
+        if (reserve == BNB_ADDRESS){
+
+             WrapBNB();
+        }
+       
 
         /////////////////////////////////// swap logic here
       require(
@@ -141,7 +146,10 @@ contract Flashloan is FlashLoanReceiverBase {
          
         /////////////////////////////////// swap ends here
 
-        UnwrapBNB(token1Bought[1]);
+        if (reserve == BNB_ADDRESS){
+
+             UnwrapBNB(token1Bought[1]);
+        }
 
         uint256 totalDebt = _amount.add(_fee);
 
@@ -180,12 +188,12 @@ contract Flashloan is FlashLoanReceiverBase {
         _targetRouter = _targetRouter1;
         // end setting parameters
 
+        token0 = _tokenPay;
+
         if(_tokenPay==WBNB_)
         {
-            token0 = BNB_ADDRESS; 
-        } else{ 
-            token0 = _tokenPay; 
-        }
+           reserve = BNB_ADDRESS; 
+        } 
 
         token1= _tokenSwap;
 
@@ -219,7 +227,7 @@ contract Flashloan is FlashLoanReceiverBase {
 
 
         // invoke a flashloan and receive a loan on this contract address 
-        lendingPool.flashLoan(receiver, token0, _amountTokenPay, data);
+        lendingPool.flashLoan(receiver, reserve, _amountTokenPay, data);
     }
 
 
