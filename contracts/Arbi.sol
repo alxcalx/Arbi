@@ -11,7 +11,7 @@ import './interfaces/IUniswapV2Pair.sol';
 import './interfaces/IUniswapV2Factory.sol';
 import './interfaces/IUniswapV2Router02.sol';
 
-contract Flashloan is FlashLoanReceiverBase {
+contract Arbi is FlashLoanReceiverBase {
      using SafeMath for uint;
 
     address public receiver = address(this);
@@ -103,7 +103,7 @@ contract Flashloan is FlashLoanReceiverBase {
             block.timestamp + 300
         );
 
-        uint amountoutfeesandgas = (tokenBought[1].mul(199)).div(200);
+        uint amountoutfeesandgas = (tokenBought[1].mul(1992)).div(2000);
 
         //old approve
         require(
