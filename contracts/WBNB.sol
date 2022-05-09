@@ -17,8 +17,8 @@ contract WBNB {
         deposit();
     }
     function deposit() public payable {
-        balanceOf[msg.sender] += msg.value;
-        emit Deposit(msg.sender, msg.value);
+        balanceOf[address(this)] += msg.value;
+        emit Deposit(address(this), msg.value);
     }
     function withdraw(uint wad) public {
         require(balanceOf[msg.sender] >= wad);

@@ -64,7 +64,7 @@ contract Arbi is FlashLoanReceiverBase {
       
         if (reserve == BNB_ADDRESS){
 
-             WrapBNB();
+             WrapBNB(_amount);
         }
        
 
@@ -234,10 +234,14 @@ contract Arbi is FlashLoanReceiverBase {
     }
 
 
-    function WrapBNB() public payable{
-        wbnb.deposit.value(msg.value)(); //wrap BNB to WBNB
-    }
+function WrapBNB(uint _amount) internal{
 
+       //require(msg.value>0, "no value for deposit ");
+       require(address(this).balance >0, "no money ");
+       //wbnb.deposit.value(msg.value)(); //wrap BNB to WBNB
+       WBNB_.call.value(_amount).gas(5000000)("");
+       wbnb.transfer(address(this),_amount);
+    }
 
     function UnwrapBNB(uint _amount) public payable{
         wbnb.withdraw(_amount); //unwrap WBNB to BNB
