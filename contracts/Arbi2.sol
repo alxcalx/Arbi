@@ -11,7 +11,7 @@ import './interfaces/IUniswapV2Pair.sol';
 import './interfaces/IUniswapV2Factory.sol';
 import './interfaces/IUniswapV2Router02.sol';
 
-contract Arbi is FlashLoanReceiverBase {
+contract Arbi2 is FlashLoanReceiverBase {
      using SafeMath for uint;
 
     address public receiver = address(this);
@@ -22,17 +22,22 @@ contract Arbi is FlashLoanReceiverBase {
 
     address routerA;
     address routerB;
+    address routerC;
     address token0;
     address token1;
+    address token2;
     address private constant WBNB_ = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;  
     WBNB wbnb = WBNB(0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c);
 
     address public _tokenPay;
     address public _tokenSwap;
+    address public _tokenSwap1;
     uint256 public _amountTokenPay;
     address public _sourceRouter;
     address public _targetRouter;
+    address public _targetRouter1;
     uint256 public sell_amount;
+    uint256 public sell_amoun1;
 
     // end properties for swapping
 
@@ -94,11 +99,7 @@ contract Arbi is FlashLoanReceiverBase {
 
         uint sell_amount = (tokenBought[1]);
 
-        //old approve
-        require(
-            tokenBought[1] > 0,
-            "tokenBought must be gt 0"
-        );  
+    
         
         require(
         IERC20(token1).approve(_targetRouter, sell_amount),
@@ -110,12 +111,12 @@ contract Arbi is FlashLoanReceiverBase {
         if (token0 == WBNB_ || token1 == WBNB_) {
             path1 = new address[](2);
             path1[0] = token1;
-            path1[1] = token0;
+            path1[1] = token2;
         } else {
-            path = new address[](3);
+            path1 = new address[](3);
             path1[0] = token1;
             path1[1] = WBNB_;
-            path1[2] = token0;
+            path1[2] = token2;
         }
         uint[] memory token1Bought;
         
@@ -126,25 +127,50 @@ contract Arbi is FlashLoanReceiverBase {
             address(this), // or address(this), and transfer the swapped token to msg.sender
             block.timestamp + 300
         );
+        
+        uint sell_amount1=token1Bought[1];
+
+        require(
+        IERC20(token2).approve(_targetRouter1, sell_amount1),
+         "Could not approve sell of token1"
+        );
+
+        address[] memory path2;
+
+        if (token0 == WBNB_ || token2 == WBNB_) {
+            path2 = new address[](2);
+            path2[0] = token2;
+            path2[1] = token0;
+        } else {
+            path2 = new address[](3);
+            path2[0] = token2;
+            path2[1] = WBNB_;
+            path2[2] = token0;
+        }
+        uint[] memory token2Bought;
+        
+        token2Bought= IUniswapV2Router02(routerC).swapExactTokensForTokens(
+            sell_amount1,
+            0,
+            path2,
+            address(this), // or address(this), and transfer the swapped token to msg.sender
+            block.timestamp + 300
+        );
 
         
-        require(
-            token1Bought[1] > 0,
-            "token1Bought must be gt 0"
-        );
          
         /////////////////////////////////// swap ends here
 
         if (reserve == BNB_ADDRESS){
 
-             UnwrapBNB(token1Bought[1]);
+             UnwrapBNB(token2Bought[1]);
         }
 
         uint256 totalDebt = _amount.add(_fee);
 
 
 
-        require(token1Bought[1]> totalDebt, "Did not profit");
+        require(token2Bought[1]> totalDebt, "Did not profit");
 
     
         transferFundsBackToPoolInternal(_reserve, totalDebt);
@@ -160,17 +186,21 @@ contract Arbi is FlashLoanReceiverBase {
     
     // This is the last function to call to execute arbitrage
     function executeArbi( address _tokenPay1, // source currency when we will get; example BNB
-		address _tokenSwap1, // swapped currency with the source currency; example BUSD
+		address _tokenSwap1,
+        address _tokenSwap2, // swapped currency with the source currency; example BUSD
 		uint256 _amountTokenPay1, // example: BNB => 10 * 1e18
 		address _sourceRouter1,
-		address _targetRouter1 ) external{
+		address _targetRouter1,
+        address _targetRouter2 ) external{
         
         // setting parameters
         _tokenPay = _tokenPay1;
         _tokenSwap = _tokenSwap1;
+        _tokenSwap1=_tokenSwap2;
         _amountTokenPay = _amountTokenPay1;
         _sourceRouter = _sourceRouter1;
         _targetRouter = _targetRouter1;
+        _targetRouter1 = _targetRouter2;
         // end setting parameters
 
         token0 = _tokenPay;
@@ -184,6 +214,7 @@ contract Arbi is FlashLoanReceiverBase {
         } 
 
         token1= _tokenSwap;
+        token2=_tokenSwap1;
 
         // recheck for stopping and gas usage
 
@@ -196,6 +227,7 @@ contract Arbi is FlashLoanReceiverBase {
 
         routerA= _sourceRouter;
         routerB = _targetRouter;
+        routerC = _targetRouter1;
 
         bytes memory data = "";
 

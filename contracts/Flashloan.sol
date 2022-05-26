@@ -14,14 +14,14 @@ contract Flashloan is FlashLoanReceiverBase {
 
     mapping (address => uint)                       public  balanceOf;
 
-    function flashloanBnb(uint256 _amount) external  {
+    function flashloanBnb(address token, uint256 _amount) external  {
         bytes memory data = "";
 
         ILendingPool lendingPool = ILendingPool(
             addressesProvider.getLendingPool()
         );
         // invoke a flashloan and receive a loan on this contract address
-        lendingPool.flashLoan(receiver, BNB_ADDRESS, _amount, data);
+        lendingPool.flashLoan(receiver,token, _amount, data);
     }
 
     function executeOperation(
@@ -47,9 +47,6 @@ contract Flashloan is FlashLoanReceiverBase {
         // Todo: Withdraw from defi smart contract
         // app.withdraw(_amount);
 
-        WrapBNB();
-        
-        UnwrapBNB(_amount);
 
         uint256 totalDebt = _amount.add(_fee);
         transferFundsBackToPoolInternal(_reserve, totalDebt);
@@ -57,18 +54,5 @@ contract Flashloan is FlashLoanReceiverBase {
 
 
 
-    function WrapBNB() public payable{
-
-       require(msg.value>0, "no value for deposit ");
-       require(address(this).balance >0, "no money ");
-        wbnb.deposit.value(msg.value)(); //wrap BNB to WBNB
-    }
-
-
-    function UnwrapBNB(uint _amount) public payable{
-
-        require(_amount>0, "no amount for withdraw ");
-        wbnb.withdraw(_amount); //unwrap WBNB to BNB
-    }
 
 }
