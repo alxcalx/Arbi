@@ -196,6 +196,7 @@ contract Arbi2 is FlashLoanReceiverBase {
         // setting parameters
         _tokenPay = _tokenPay1;
         _tokenSwap = _tokenSwap1;
+        _tokenSwap1=_tokenSwap2;
         _amountTokenPay = _amountTokenPay1;
         _sourceRouter = _sourceRouter1;
         _targetRouter = _targetRouter1;
