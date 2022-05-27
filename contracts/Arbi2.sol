@@ -131,7 +131,7 @@ contract Arbi2 is FlashLoanReceiverBase {
         uint sell_amount1=token1Bought[1];
 
         require(
-        IERC20(token2).approve(_targetRouter2, sell_amount1),
+        IERC20(token2).approve(routerC, sell_amount1),
          "Could not approve sell of token1"
         );
 
