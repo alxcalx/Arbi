@@ -190,13 +190,12 @@ contract Arbi2 is FlashLoanReceiverBase {
         address _tokenSwap2, // swapped currency with the source currency; example BUSD
 		uint256 _amountTokenPay1, // example: BNB => 10 * 1e18
 		address _sourceRouter1,
-		address _targetRouter1,
+		address _targetRouter,
         address _targetRouter2 ) external{
         
         // setting parameters
         _tokenPay = _tokenPay1;
         _tokenSwap = _tokenSwap1;
-        _tokenSwap1=_tokenSwap2;
         _amountTokenPay = _amountTokenPay1;
         _sourceRouter = _sourceRouter1;
         _targetRouter = _targetRouter1;

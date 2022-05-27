@@ -17,11 +17,12 @@ contract Swapcontract {
     // https://bscscan.com/address/0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F
    // address private constant pancakeRouter = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
     // https://bscscan.com/address/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
-     address private constant WBNB_ = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;  
-     WBNB wbnb = WBNB(0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c);
+     address private constant WBNB_ = 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd;  
+     WBNB wbnb = WBNB(0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd);
 
 
-    
+    uint256 public sell_amount;
+    uint256 public sell_amoun1;
 
     constructor() public {
 
@@ -31,28 +32,26 @@ contract Swapcontract {
 
     function startSwap(  //TEST PARAMETERS
         address token0,  //0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd (WBNB)
-        address token1,  //0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7 (BUSD)
+        address token1,
+        address token2,  //0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7 (BUSD)
         uint amount0,   //1000000000000000
         address routerA,
-        address routerB
+        address routerB,
+        address routerC
             //0
     ) external {
         // transfer input tokens to this contract address
 
         // approve pancakeRouter to transfer tokens from this contract
-       IERC20(token0).approve(routerA, amount0);
+        require(
+       IERC20(token0).approve(routerA, amount0),
+       "Could not approve sell of token0"
+        );
+         address[] memory path;
 
-        address[] memory path;
-        if (token0 == WBNB || token1 == WBNB) {
-            path = new address[](2);
             path[0] = token0;
             path[1] = token1;
-        } else {
-            path = new address[](3);
-            path[0] = token0;
-            path[1] = WBNB;
-            path[2] = token1;
-        } 
+    
        
          uint256 [] memory tokenBought;
         tokenBought=IUniswapV2Router02(routerA).swapExactTokensForTokens(
@@ -63,31 +62,51 @@ contract Swapcontract {
             block.timestamp + 300
         );  
         
-         uint amountoutfeesandgas = (tokenBought[1].mul(1992)).div(2000);
+        uint sell_amount = tokenBought[1];
         
         address[] memory path1;
-        if (token0 == WBNB || token1 == WBNB) {
-            path1 = new address[](2);
+     
             path1[0] = token1;
-            path1[1] = token0;
-        } else {
-            path1 = new address[](3);
-            path1[0] = token1;
-            path1[1] = WBNB;
-            path1[2] = token0;
-        } 
-
-         IERC20(token1).approve(routerB, amountoutfeesandgas); 
-
+            path1[1] = token2;
+    
+         
+         require(
+         IERC20(token1).approve(routerB, sell_amount),
+         "Could not approve sell of token1" 
+         );
 
          uint [] memory tokenBought1;
           tokenBought1=IUniswapV2Router02(routerB).swapExactTokensForTokens(
-            amountoutfeesandgas,
+          sell_amount,
             0,
             path1,
             address(this), // or address(this), and transfer the swapped token to msg.sender
             block.timestamp + 300
         );  
+
+        uint sell_amount1=tokenBought1[1];
+
+        require(
+        IERC20(token2).approve(routerC, sell_amount1),
+         "Could not approve sell of token2"
+        );
+
+        address[] memory path2;
+
+   
+            path2[0] = token2;
+            path2[1] = token0;
+       
+        uint[] memory token2Bought;
+        
+        token2Bought= IUniswapV2Router02(routerC).swapExactTokensForTokens(
+            sell_amount1,
+            0,
+            path2,
+            address(this), // or address(this), and transfer the swapped token to msg.sender
+            block.timestamp + 300
+        );
+
 
 
 
