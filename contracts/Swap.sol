@@ -49,8 +49,17 @@ contract Swapcontract {
         );
          address[] memory path;
 
+        if (token0 == WBNB_ || token1 == WBNB_) {
+            path = new address[](2);
             path[0] = token0;
             path[1] = token1;
+        } else {
+            path = new address[](3);
+            path[0] = token0;
+            path[1] = WBNB_;
+            path[2] = token1;
+        }
+        
     
        
          uint256 [] memory tokenBought;
@@ -66,8 +75,16 @@ contract Swapcontract {
         
         address[] memory path1;
      
+            if (token0 == WBNB_ || token1 == WBNB_) {
+            path1 = new address[](2);
             path1[0] = token1;
             path1[1] = token2;
+        } else {
+            path1 = new address[](3);
+            path1[0] = token1;
+            path1[1] = WBNB_;
+            path1[2] = token2;
+        }
     
          
          require(
@@ -93,9 +110,16 @@ contract Swapcontract {
 
         address[] memory path2;
 
-   
+        if (token0 == WBNB_ || token2 == WBNB_) {
+            path2 = new address[](2);
             path2[0] = token2;
             path2[1] = token0;
+        } else {
+            path2 = new address[](3);
+            path2[0] = token2;
+            path2[1] = WBNB_;
+            path2[2] = token0;
+        }
        
         uint[] memory token2Bought;
         
