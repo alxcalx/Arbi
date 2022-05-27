@@ -35,7 +35,7 @@ contract Arbi2 is FlashLoanReceiverBase {
     uint256 public _amountTokenPay;
     address public _sourceRouter;
     address public _targetRouter;
-    address public _targetRouter1;
+    address public _targetRouter2;
     uint256 public sell_amount;
     uint256 public sell_amoun1;
 
@@ -131,7 +131,7 @@ contract Arbi2 is FlashLoanReceiverBase {
         uint sell_amount1=token1Bought[1];
 
         require(
-        IERC20(token2).approve(_targetRouter1, sell_amount1),
+        IERC20(token2).approve(_targetRouter2, sell_amount1),
          "Could not approve sell of token1"
         );
 
@@ -200,7 +200,7 @@ contract Arbi2 is FlashLoanReceiverBase {
         _amountTokenPay = _amountTokenPay1;
         _sourceRouter = _sourceRouter1;
         _targetRouter = _targetRouter1;
-        _targetRouter1 = _targetRouter2;
+        _targetRouter2 = _targetRouter2;
         // end setting parameters
 
         token0 = _tokenPay;
@@ -227,7 +227,7 @@ contract Arbi2 is FlashLoanReceiverBase {
 
         routerA= _sourceRouter;
         routerB = _targetRouter;
-        routerC = _targetRouter1;
+        routerC = _targetRouter2;
 
         bytes memory data = "";
 
