@@ -102,13 +102,13 @@ contract Arbi2 is FlashLoanReceiverBase {
     
         
         require(
-        IERC20(token1).approve(_targetRouter, sell_amount),
+        IERC20(token1).approve(routerB, sell_amount),
          "Could not approve sell of token1"
         );
 
         address[] memory path1;
 
-        if (token0 == WBNB_ || token1 == WBNB_) {
+        if (token1 == WBNB_ || token2 == WBNB_) {
             path1 = new address[](2);
             path1[0] = token1;
             path1[1] = token2;
@@ -190,7 +190,7 @@ contract Arbi2 is FlashLoanReceiverBase {
         address _tokenSwap2, // swapped currency with the source currency; example BUSD
 		uint256 _amountTokenPay1, // example: BNB => 10 * 1e18
 		address _sourceRouter1,
-		address _targetRouter,
+		address _targetRouter1,
         address _targetRouter2 ) external{
         
         // setting parameters
